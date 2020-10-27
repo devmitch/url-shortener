@@ -1,0 +1,26 @@
+{
+  "name": "url-shortener",
+  "version": "1.0.0",
+  "description": "API to shorten urls",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devmitch/url-shortener.git"
+  },
+  "author": "Mitchell Henry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devmitch/url-shortener/issues"
+  },
+  "homepage": "https://github.com/devmitch/url-shortener#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "crypto-random-string": "^3.3.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.11"
+  }
+}
