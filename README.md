@@ -1,5 +1,5 @@
 # url-shortener
-Another tool that shortens URLs
+Another tool that shortens URLs. Live demo at [cutelink.me](https://cutelink.me)
 
 Todo:
 * make front-end pretty
