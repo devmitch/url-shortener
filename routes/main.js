@@ -5,17 +5,28 @@ const crypto = require('crypto-random-string');
 
 let router = express.Router();
 
+router.get('/favicon.ico', (req, res, next) => {
+    return res.status(204);
+})
+
+router.get('/', (req, res, next) => {
+    return res.render('index');
+});
+
 router.get('/:id', (req, res, next) => {
+    console.log("user is trying to redirect! id is " + req.params.id);
     mappingModel.Mapping.findOne({ key: req.params.id }, (err, mappingDoc) => {
-        if (err) {
+        if (err || !mappingDoc) {
+            console.log("mappingDoc not found!");
             return res.status(500).json({ "error": err });
         }
-        res.redirect(mappingDoc.url);
+        return res.redirect(mappingDoc.url);
     });
 });
 
 router.post('/shorten', async (req, res, next) => {
     url = req.body.url;
+    console.log("user attempting to shorten link, url is " + url);
     // prepend http:// or https:// so we dont recursively redirect back to the /:id route
     if (!(url.substring(0, 7) == 'http://' || url.substring(0, 8) == 'https://')) {
         url = 'http://' + url;
