@@ -14,10 +14,8 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
-    console.log("user is trying to redirect! id is " + req.params.id);
     mappingModel.Mapping.findOne({ key: req.params.id }, (err, mappingDoc) => {
         if (err || !mappingDoc) {
-            console.log("mappingDoc not found!");
             return res.status(500).json({ "error": err });
         }
         return res.redirect(mappingDoc.url);
@@ -26,7 +24,6 @@ router.get('/:id', (req, res, next) => {
 
 router.post('/shorten', async (req, res, next) => {
     url = req.body.url;
-    console.log("user attempting to shorten link, url is " + url);
     // prepend http:// or https:// so we dont recursively redirect back to the /:id route
     if (!(url.substring(0, 7) == 'http://' || url.substring(0, 8) == 'https://')) {
         url = 'http://' + url;
