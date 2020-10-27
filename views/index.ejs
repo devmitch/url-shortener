@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
+        <link rel="stylesheet" types="text/css" href="style.css">
     </head>
 
     <body>
-        <input type="text" id="urlInput" placeholder="www.google.com">
-
-        <button onclick="shortenURL()">Shorten!</button>
-        <p id="urlOutput"></p>
+        <div class="container">
+            <div class="box">
+                <h1>Paste link:</h1>
+                <input type="text" id="urlInput" placeholder="www.google.com">
+                <br>
+                <button onclick="shortenURL()">Shorten!</button>
+                <p id="urlOutput"></p>
+            </div>
+        </div>
+        
         <script src="index.js"></script>
     </body>
 </html>

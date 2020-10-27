@@ -18,7 +18,12 @@ async function shortenURL() {
     .then((responseJSON) => {
         console.log("Got response!");
         console.log(window.location.hostname + '/' + responseJSON.url);
-        var paragraph = document.getElementById('urlOutput')
-        paragraph.textContent = 'Your shortened url is ' + window.location.hostname + '/' + responseJSON.url;
+        const url = window.location.hostname + '/' + responseJSON.url;
+        var paragraph = document.getElementById('urlOutput');
+        var aTag = document.createElement('a');
+        aTag.setAttribute('href', responseJSON.url);
+        aTag.textContent = url;
+        paragraph.textContent = 'Your shortened url is ';
+        paragraph.appendChild(aTag);
     });
 }
