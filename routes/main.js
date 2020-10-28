@@ -15,8 +15,10 @@ router.get('/', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
     mappingModel.Mapping.findOne({ key: req.params.id }, (err, mappingDoc) => {
-        if (err || !mappingDoc) {
-            return res.status(500).json({ "error": err });
+        if (err) {
+            return res.status(500).json({ error: "Error pinging database." });
+        } else if (!mappingDoc) {
+            return res.status(404).json({ error: "Url does not map to anything." });
         }
         return res.redirect(mappingDoc.url);
     });
@@ -33,16 +35,16 @@ router.post('/shorten', async (req, res, next) => {
 
     const mappingExists = await mappingModel.Mapping.findOne({ "url": url });
     if (mappingExists != null) { // url already mapped
-        return res.status(200).json({ "url": mappingExists.key });
+        return res.status(200).json({ url: mappingExists.key });
     }
 
     let newMapping = new mappingModel.Mapping({ "url": url, "key": key });
 
     newMapping.save((err, mappingDoc) => {
         if (err) { // key collision potentially?
-            return res.status(500).json({"error": err});
+            return res.status(500).json({ error: "Error pinging database." });
         }
-        res.status(200).json({ "url": mappingDoc.key });
+        res.status(200).json({ url: mappingDoc.key });
     });
 });
 
