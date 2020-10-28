@@ -65,3 +65,7 @@ body {
 .box input[type="submit"]:hover {
     background: #2ecc71
 }
+
+.card {
+    background-color: transparent;
+}
